@@ -1,10 +1,10 @@
 def main_menu():
-    print("Please choose one of the following options:\n 1. Take a quiz\n 2. Manage quiz\n")
+    print("Please choose one of the following options:\n 1. Take a quiz\n 2. Manage quiz\n 3. Quit\n")
 
 
 def take_a_quiz_menu():
     print("Select your quiz preference:\n 1. General knowledge quiz\n 2. World history quiz")
-    print(" 3. Natural sciences quiz\n 4. Geography quiz\n 5. Art quiz\n 6. Custom quiz\n")
+    print(" 3. Natural sciences quiz\n 4. Geography quiz\n 5. Art quiz\n 6. Custom quiz\n 7. Back to Main Menu\n")
 
 
 def quiz_difficulty():
