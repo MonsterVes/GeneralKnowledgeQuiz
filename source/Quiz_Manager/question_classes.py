@@ -26,4 +26,7 @@ class ShortAnswerQuestion(Question):
         super().__init__(question_text)
         self.answer = answer
 
+class QuestionManager:
+    
+
 

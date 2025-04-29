@@ -3,6 +3,7 @@ import time
 import quiz_menus as qm
 import user_actions as ua
 
+
 def main():
 
     print("Welcome to QuizUp!")
@@ -29,3 +30,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
