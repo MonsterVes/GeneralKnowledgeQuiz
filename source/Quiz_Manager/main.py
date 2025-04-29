@@ -1,8 +1,15 @@
+
+import os
 import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 import time
 from source.Quiz_Manager import quiz_menus as qm
 from source.Quiz_Manager import user_actions as ua
 
+
+# print(sys.path)
+# cwd = os.getcwd()
+# print (cwd)
 
 def main():
 
@@ -30,4 +37,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

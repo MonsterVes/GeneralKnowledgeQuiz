@@ -3,8 +3,12 @@ def main_menu():
 
 
 def take_a_quiz_menu():
-    print("Select your quiz preference:\n 1. General knowledge quiz\n 2. World history quiz")
-    print(" 3. Natural sciences quiz\n 4. Geography quiz\n 5. Art quiz\n 6. Custom quiz\n 7. Back to Main Menu\n")
+    print("Select your quiz preference:\n"
+        "1. General knowledge quiz\n"
+        "2. Natural sciences quiz\n"
+        "3. Geography quiz\n"
+        "4. Custom quiz\n" 
+        "5. Back to Main Menu\n")
 
 
 def quiz_difficulty():
