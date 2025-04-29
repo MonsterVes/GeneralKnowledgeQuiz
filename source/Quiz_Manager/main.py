@@ -1,7 +1,7 @@
 import sys
 import time
-import quiz_menus as qm
-import user_actions as ua
+from source.Quiz_Manager import quiz_menus as qm
+from source.Quiz_Manager import user_actions as ua
 
 
 def main():
