@@ -1,5 +1,5 @@
 import quiz_menus as qm
-from question_manager import QuestionManager as qm
+from question_manager import QuestionManager as manager
 
 
 def main_menu_action(action):
@@ -42,7 +42,7 @@ def take_a_quiz_action(quiz_action):
 def manage_quiz_action(manage_action):
     while True:
         if manage_action == "1":
-            qm.add_question()
+            manager.add_question()
             break
         elif manage_action == "2":
             print("Edit question (NOT READY)")

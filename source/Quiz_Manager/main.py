@@ -16,7 +16,7 @@ def main():
         if main_menu_action == "1":
             qm.take_a_quiz_menu()
             quiz_action = input ("Your choice: ")
-            ua. take_a_quiz_action(quiz_action)
+            ua.take_a_quiz_action(quiz_action)
         elif main_menu_action == "2":
             qm.manage_quiz_menu()
             manage_action = input ("Your choice: ")
