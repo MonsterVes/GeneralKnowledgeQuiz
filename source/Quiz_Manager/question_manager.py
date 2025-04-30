@@ -1,5 +1,7 @@
 from source.Database import quiz_db as db
 from sqlalchemy.orm import sessionmaker
+import re
+
 
 Session = sessionmaker(bind=db.engine)
 
@@ -29,6 +31,8 @@ class QuestionManager:
             if question_type not in ["1", "2", "3", "4"]:
                 print("Invalid question type choice. Please try again.")
                 return
+            if question_type == "3":
+                print("Question must contain 3 to 5 consecutive underscores (____) for the 'Fill in the blank' field\n")
             new_question_text = input("Please enter Question text: ").strip()
             if not new_question_text:
                 print("Question text cannot be empty")
@@ -43,6 +47,8 @@ class QuestionManager:
                 answer = input("Please enter correct answer (True/False): ").strip().lower()
                 if answer not in ["true", "false"]:
                     print("Answer must be True or False")
+                    self.session.delete(new_question)
+                    self.session.commit()
                     return
                 question = db.TrueFalseQuestionDB(answer=answer, question=new_question)
 
@@ -52,12 +58,16 @@ class QuestionManager:
                     option = input(f"Option {letter}: ").strip()
                     if not option:
                         print("Option cannot be empty")
+                        self.session.delete(new_question)
+                        self.session.commit()
                         return
                     options.append(option)
 
                 answer = input("Please enter correct Option (A, B, C or D): ").strip().lower()
-                if answer not in ["A", "B", "C", "D"]:
+                if answer not in ["a", "b", "c", "d"]:
                     print("Answer must be A, B, C or D")
+                    self.session.delete(new_question)
+                    self.session.commit()                    
                     return
                 question = db.MultipleChoiceQuestionDB(                    
                     a = options[0],
@@ -68,9 +78,15 @@ class QuestionManager:
                     question = new_question
                 )
             elif question_type == "3":
-                answer = input("Please enter correct answer: ")
+                if not re.search(r"_{3,5}", new_question_text):
+                    print("Invalid fill-in-the-blank question. It must contain 3 to 5 consecutive underscores.")
+                    self.session.delete(new_question)
+                    self.session.commit()
+                answer = input("Please enter correct answer: ").strip().lower()
                 if not answer:
                     print("Answer cannot be empty")
+                    self.session.delete(new_question)
+                    self.session.commit()
                     return
                 question = db.FillInQuestionDB(answer = answer, question = new_question)
             
@@ -78,6 +94,8 @@ class QuestionManager:
                 answer = input("Please enter correct answer: ")
                 if not answer:
                     print("Answer cannot be empty")
+                    self.session.delete(new_question)
+                    self.session.commit()                    
                     return
                 question = db.ShortAnswerQuestionDB(
                     answer = answer, question = new_question)
