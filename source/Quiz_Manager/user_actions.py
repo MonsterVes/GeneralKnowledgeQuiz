@@ -17,7 +17,7 @@ def take_a_quiz_action(quiz_action):
             print("Start a General knowledge quiz (NOT READY)")
             break
         elif quiz_action == "2":
-            print("Start a Natural sciences quiz (NOT READY)")
+            print("Start a Science quiz (NOT READY)")
             break
         elif quiz_action == "3":
             print("Start a Geography quiz (NOT READY)")
