@@ -5,10 +5,9 @@ import os
 # cwd = os.path()
 # print(cwd)
 
-db_folder = os.path.dirname(__file__)  # This gets the current file's directory
-db_path = os.path.join(db_folder, 'quiz.db')  # Create the full path to quiz.db
+db_folder = os.path.dirname(__file__)  
+db_path = os.path.join(db_folder, 'quiz.db')  
 
-# Create the SQLite engine with the correct path
 engine = create_engine(f'sqlite:///{db_path}')
 
 Base = declarative_base()
@@ -20,6 +19,7 @@ class QuestionDB(Base):
     question_text = Column(String, nullable = False)
     question_type = Column(String, nullable = False)
     category = Column(String, nullable = False)
+    difficulty = Column(String, nullable = False)
     true_false = relationship("TrueFalseQuestionDB", back_populates = "question", uselist = False)
     multiple_choice = relationship("MultipleChoiceQuestionDB", back_populates = "question", uselist = False)
     fill_in = relationship("FillInQuestionDB", back_populates = "question", uselist = False)

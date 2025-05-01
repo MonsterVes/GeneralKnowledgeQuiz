@@ -31,13 +31,23 @@ class QuestionManager:
             if question_type not in ["1", "2", "3", "4"]:
                 print("Invalid question type choice. Please try again.")
                 return
+            
+            difficulty = input(
+                "What is the difficulty of the question?\n"
+                " 1. Easy\n"
+                " 2. Medium\n" 
+                " 3. Hard\n" 
+                "Your choice(1, 2 or 3): ").strip()
+            if difficulty not in ["1", "2", "3"]:
+                print("Invalid question difficulty. Please try again.")
+                return           
             if question_type == "3":
                 print("Question must contain 3 to 5 consecutive underscores (____) for the 'Fill in the blank' field\n")
             new_question_text = input("Please enter Question text: ").strip()
             if not new_question_text:
                 print("Question text cannot be empty")
                 return
-            new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category = category)
+            new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category = category, difficulty = difficulty)
             
             self.session.add(new_question)
             self.session.commit()
