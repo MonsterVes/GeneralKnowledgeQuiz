@@ -1,78 +1,33 @@
 from sqlalchemy.orm import sessionmaker
+import os
 import csv
 import quiz_db as qdb
 
-# Create a session
+
 Session = sessionmaker(bind=qdb.engine)
 session = Session()
 
-# # Export the "questions" table to a CSV file
-# output_questions = "questions.csv"
-# with open(output_questions, "w", newline="", encoding="utf-8") as csvfile:
-#     writer = csv.writer(csvfile)
-#     # Write the header
-#     writer.writerow(["id", "question_text", "question_type", "category"])
-#     # Write the data
-#     questions = session.query(qdb.QuestionDB).all()
-#     for question in questions:
-#         writer.writerow([question.id, question.question_text, question.question_type, question.category])
-
-# print(f"Table 'questions' exported to {output_questions}")
+export_folder = "c:/Users/vesi/Desktop/Python/Course/Projects/GeneralKnowledgeQuiz/source/Database/DB_exports"
+os.makedirs(export_folder, exist_ok=True)
 
 
-# output_questions = "true_false.csv"
-# with open(output_questions, "w", newline="", encoding="utf-8") as csvfile:
-#     writer = csv.writer(csvfile)
-#     # Write the header
-#     writer.writerow(["id", "answer", "question_id"])
-#     # Write the data
-#     questions = session.query(qdb.TrueFalseQuestionDB).all()
-#     for question in questions:
-#         writer.writerow([question.id, question.answer, question.question_id])
+def export_table_to_csv(table, filename):
+    """Exports any given table from 'quiz.db' to an scv file, saved in DB_exports folder"""
+    headers = table.__table__.columns.keys()
+    query = session.query(*[getattr(table, col) for col in headers]).all()
+    file_path =os.path.join(export_folder, filename)
 
-# print(f"Table 'true_false' exported to {output_questions}")
+    with open(file_path, "w", newline = "", encoding = "utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        writer.writerows(query)
 
+        print(f"{table.__tablename__} exported to {file_path}")
 
-# output_questions = "multiple_choice.csv"
-# with open(output_questions, "w", newline="", encoding="utf-8") as csvfile:
-#     writer = csv.writer(csvfile)
-#     # Write the header
-#     writer.writerow(["id", "a", "b", "c", "d", "answer" "question_id"])
-#     # Write the data
-#     questions = session.query(qdb.MultipleChoiceQuestionDB).all()
-#     for question in questions:
-#         writer.writerow([question.id, question.a, question.b, question.c, question.d, question.answer, question.question_id])
+session.close()
 
-# print(f"Table 'multiple_choice' exported to {output_questions}")
+# export_table_to_csv(qdb.QuestionDB,"questions.csv")
 
-
-# output_questions = "fill_in_questions.csv"
-# with open(output_questions, "w", newline="", encoding="utf-8") as csvfile:
-#     writer = csv.writer(csvfile)
-#     # Write the header
-#     writer.writerow(["id", "answer", "question_id"])
-#     # Write the data
-#     questions = session.query(qdb.FillInQuestionDB).all()
-#     for question in questions:
-#         writer.writerow([question.id, question.answer, question.question_id])
-
-# print(f"Table 'fill_in_questions' exported to {output_questions}")
-
-
-# output_questions = "short_answer_questions.csv"
-# with open(output_questions, "w", newline="", encoding="utf-8") as csvfile:
-#     writer = csv.writer(csvfile)
-#     # Write the header
-#     writer.writerow(["id", "answer", "question_id"])
-#     # Write the data
-#     questions = session.query(qdb.ShortAnswerQuestionDB).all()
-#     for question in questions:
-#         writer.writerow([question.id, question.answer, question.question_id])
-
-# print(f"Table 'short_answer_questions' exported to {output_questions}")
-
-# # Close the session
-# session.close()
 
 
 
