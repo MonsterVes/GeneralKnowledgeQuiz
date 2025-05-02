@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 import time
 from source.Quiz_Manager import quiz_menus as qm
 from source.Quiz_Manager import user_actions as ua
-
+from source.Quiz_Manager.quiz_class import Quiz
 
 # print(sys.path)
 # cwd = os.getcwd()
@@ -21,9 +21,16 @@ def main():
         qm.main_menu()
         main_menu_action = input("Your choice: ")
         if main_menu_action == "1":
-            qm.take_a_quiz_menu()
-            quiz_action = input ("Your choice: ")
-            ua.take_a_quiz_action(quiz_action)
+            # qm.take_a_quiz_menu()
+            # qm.quiz_difficulty_menu()
+            # qm.question_limit()
+            
+            quiz = Quiz(qm.quiz_category(), qm.quiz_difficulty_menu(), qm.question_limit() )
+            quiz.load_questions()
+            quiz.start_quiz()
+            # quiz_action = input ("Your choice: ")
+            # ua.take_a_quiz_action(quiz_action)
+
         elif main_menu_action == "2":
             qm.manage_quiz_menu()
             manage_action = input ("Your choice: ")
