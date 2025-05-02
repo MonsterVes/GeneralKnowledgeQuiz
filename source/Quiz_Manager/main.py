@@ -3,6 +3,7 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 import time
+import question_manager as manager
 from source.Quiz_Manager import quiz_menus as qm
 from source.Quiz_Manager import user_actions as ua
 from source.Quiz_Manager.quiz_class import Quiz
@@ -20,21 +21,22 @@ def main():
     while True:
         qm.main_menu()
         main_menu_action = input("Your choice: ")
-        if main_menu_action == "1":
-            # qm.take_a_quiz_menu()
-            # qm.quiz_difficulty_menu()
-            # qm.question_limit()
-            
-            quiz = Quiz(qm.quiz_category(), qm.quiz_difficulty_menu(), qm.question_limit() )
+        if main_menu_action == "1":       
+            quiz = Quiz(qm.quiz_category_menu(), qm.quiz_difficulty_menu(), qm.question_limit() )
             quiz.load_questions()
             quiz.start_quiz()
-            # quiz_action = input ("Your choice: ")
-            # ua.take_a_quiz_action(quiz_action)
 
         elif main_menu_action == "2":
-            qm.manage_quiz_menu()
-            manage_action = input ("Your choice: ")
-            ua.manage_quiz_action(manage_action)
+            question_manager = manager.QuestionManager()
+            manage_action = qm.manage_quiz_menu()
+            if manage_action == "1":
+                question_manager.add_question()
+            elif manage_action == "2":
+                question_manager.edit_question()
+            elif manage_action == "3":
+                question_manager.delete_question()
+            else:
+                print(f"{manage_action} is not a valid choice. Please try again")
         elif main_menu_action == "3":
             sys.exit("Thank you for visiting QuizUp! Goodbye!")
         else: 

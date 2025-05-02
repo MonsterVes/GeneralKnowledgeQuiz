@@ -25,23 +25,23 @@ class Quiz:
                 question_type=question_type).limit(questions_per_type).all()
         )
             all_questions.extend(questions)
-        print(f"Loaded {len(all_questions)} questions from the database.")
         if len(all_questions) < self.question_limit:
             print(f"Not enough questions in the database. Only {len(all_questions)} questions found.")
             return False
     
         selected_questions = random.sample(all_questions, self.question_limit)
-        
-    
         self.questions = sorted(selected_questions, key = lambda q: q.question_type)
-        
         return True
         
 
     def print_questions(self, question):
-        print(question.question_text)
+        print(f"{question.question_text}")
         if question.question_type == "1":
-            user_answer = input("Enter True or False: ").strip().lower()
+            while True:
+                user_answer = input("Enter True or False: ").strip().lower()
+                if user_answer in ["true", "false"]:
+                    break
+                print("Answer must be True or False. Please try again.")
             correct_answer = question.true_false.answer.lower()
             return user_answer == correct_answer
         elif question.question_type == "2":
@@ -49,7 +49,11 @@ class Quiz:
             print(f"B. {question.multiple_choice.b}") 
             print(f"C. {question.multiple_choice.c}") 
             print(f"D. {question.multiple_choice.d}") 
-            user_answer = input("Enter A, B, C, or D: ").strip().lower()
+            while True:
+                user_answer = input("Enter A, B, C, or D: ").strip().lower()
+                if user_answer in ["a", "b", "c", "d"]:
+                    break
+                print("Answer must be A, B, C, or D. Please try again.")
             correct_answer = question.multiple_choice.answer.lower()
             return user_answer == correct_answer
         elif question.question_type == "3":
@@ -62,14 +66,23 @@ class Quiz:
             return user_answer == correct_answer
         
     def start_quiz(self):
-        for question in self.questions:
+        for index, question in enumerate(self.questions, start = 1):
+            print(f"\nQuestion No. {index}")
             correct_answer = self.print_questions(question)
             if correct_answer:
                 print("Correct!")
                 self.score +=1
             else:
-                print(f"Wrong! Correct answer is {question.answer}")
+                if question.question_type == "1":
+                    correct_answer = question.true_false.answer
+                elif question.question_type == "2":
+                    correct_answer = question.multiple_choice.answer.upper()
+                elif question.question_type == "3":
+                    correct_answer = question.fill_in.answer
+                elif question.question_type == "4":
+                    correct_answer = question.short_answer.answer
+                print(f"Wrong! The correct answer is: {correct_answer.title()}")
 
-        print(f"Your score is {self.score}/{self.question_limit}")
+        print(f"Your score is {self.score} out of {self.question_limit}.")
         self.session.close()
         

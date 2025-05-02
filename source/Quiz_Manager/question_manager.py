@@ -65,7 +65,7 @@ class QuestionManager:
             elif question_type == "2":
                 options = []
                 for letter in ["A", "B", "C", "D"]:
-                    option = input(f"Option {letter}: ").strip()
+                    option = input(f"Option {letter}: ").strip().lower()
                     if not option:
                         print("Option cannot be empty")
                         self.session.delete(new_question)
@@ -101,7 +101,7 @@ class QuestionManager:
                 question = db.FillInQuestionDB(answer = answer, question = new_question)
             
             elif question_type == "4":
-                answer = input("Please enter correct answer: ")
+                answer = input("Please enter correct answer: ").strip().lower()
                 if not answer:
                     print("Answer cannot be empty")
                     self.session.delete(new_question)
@@ -122,6 +122,14 @@ class QuestionManager:
             self.session.close()
         finally:
             self.session.close()
+
+    
+    def delete_question(self):
+        pass
+
+
+    def edit_question(self):
+        pass
 
 
 

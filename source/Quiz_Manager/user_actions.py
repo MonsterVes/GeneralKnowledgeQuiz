@@ -11,27 +11,27 @@ def main_menu_action(action):
         print(f"{action} is not a valid option. Please try again")
 
 
-def take_a_quiz_action(quiz_action):
-    while True:
-        if quiz_action == "1":
-            print("Start a General knowledge quiz (NOT READY)")
-            break
-        elif quiz_action == "2":
-            print("Start a Science quiz (NOT READY)")
-            break
-        elif quiz_action == "3":
-            print("Start a Geography quiz (NOT READY)")
-            break
-        elif quiz_action == "4":
-            print("Start a Custom quiz (NOT READY)")
-            break
-        elif quiz_action == "5":
-            menu.main_menu()
-            break
-        else:
-            print(f"{quiz_action} is not a valid choice. Please try again\n")
-            menu.take_a_quiz_menu()
-            quiz_action = input("Your choice: ")
+# def take_a_quiz_action(quiz_action):
+#     while True:
+#         if quiz_action == "1":
+#             print("Start a General knowledge quiz (NOT READY)")
+#             break
+#         elif quiz_action == "2":
+#             print("Start a Science quiz (NOT READY)")
+#             break
+#         elif quiz_action == "3":
+#             print("Start a Geography quiz (NOT READY)")
+#             break
+#         elif quiz_action == "4":
+#             print("Start a Custom quiz (NOT READY)")
+#             break
+#         elif quiz_action == "5":
+#             menu.main_menu()
+#             break
+#         else:
+#             print(f"{quiz_action} is not a valid choice. Please try again\n")
+#             menu.take_a_quiz_menu()
+#             quiz_action = input("Your choice: ")
 
 question_manager = manager.QuestionManager()
 
