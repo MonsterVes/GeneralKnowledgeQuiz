@@ -14,8 +14,7 @@ def main():
 
 
     while True:
-        qm.main_menu()
-        main_menu_action = input("Your choice: ")
+        main_menu_action = qm.main_menu()
         if main_menu_action == "1":       
             quiz = Quiz(qm.quiz_category_menu(), qm.quiz_difficulty_menu(), qm.question_limit() )
             quiz.load_questions()
