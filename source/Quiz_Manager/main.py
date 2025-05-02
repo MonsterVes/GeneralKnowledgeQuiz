@@ -1,11 +1,9 @@
-
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 import time
 import question_manager as manager
 from source.Quiz_Manager import quiz_menus as qm
-from source.Quiz_Manager import user_actions as ua
 from source.Quiz_Manager.quiz_class import Quiz
 
 # print(sys.path)
