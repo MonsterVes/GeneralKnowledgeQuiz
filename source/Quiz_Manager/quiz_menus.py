@@ -1,6 +1,6 @@
 def main_menu():
     main_menu_action = input(
-        "\nPlease choose one of the following options:\n"
+        "Please choose one of the following options:\n"
         " 1. Take a quiz\n"
         " 2. Manage quiz\n"
         " 3. Quit\n\n"
@@ -37,10 +37,11 @@ def question_limit():
 
 
 def manage_quiz_menu():
-    manage_action = input("Please chose one of the following options:\n" 
-          "1. Add question\n"
-          "2. Edit question\n" 
-          "3. Delete question\n")
+    manage_action = input("\nPlease choоse one of the following options:\n" 
+          " 1. Add question\n"
+          " 2. Edit question\n" 
+          " 3. Delete question\n\n"
+          "Your choice: ").strip()
     return manage_action
 
 

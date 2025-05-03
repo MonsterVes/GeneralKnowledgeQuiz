@@ -22,3 +22,245 @@ id,question_text,question_type,category,difficulty
 21,Which planet has the most moons?,4,2,3
 22,"Where is Angel Falls, the world’s largest waterfall, located?",4,3,3
 23,"What is the fourth state of matter called, after the states of gas, liquid and solid?",2,2,2
+24,'A' is the most common letter used in the English language,1,1,1
+25,When the two numbers on opposite sides of a dice are added together it always equals 7,1,1,2
+26,In the English language there is no word that rhymes with orange,1,1,2
+27,English is the most spoken language in the world,1,1,1
+28,The unicorn is the national animal of Scotland,1,1,3
+29,A lion's roar can be heard up to eight kilometres away,1,1,2
+30,Fish cannot blink.,1,1,2
+31,Titanic was released in 1999.,1,1,2
+32,Mila Kunis lied about her age at her That '70s Show audition,1,1,3
+33,Queen Elizabeth II was the second-longest-reigning British monarch,1,1,2
+34,"Before becoming queen, Queen Elizabeth II trained as a mechanic",1,1,2
+35,Madonna's real name is Madonna.,1,1,3
+36,50 Cent and Charlie Chaplin were alive at the same time,1,1,3
+37,Hillary Clinton and Celine Dion are related,1,1,3
+38,Penguins can only be found in Antarctica.,1,1,1
+39,Honey never spoils.,1,1,1
+40,Brown eggs are more nutritious than white eggs.,1,1,1
+41,Drinking water before meals can help reduce your appetite.,1,1,1
+42,Africa is the largest continent in the world.,1,3,1
+43,Mount Everest is the tallest mountain in the world.,1,3,1
+44,The Great Wall of China is visible from space with the naked eye.,1,3,2
+45,Australia is both a country and a continent.,1,3,1
+46,The Sahara Desert is the largest desert in the world.,1,3,3
+47,Africa is the only continent that is located in all four hemispheres.,1,3,2
+48,Russia is the largest country by land area in the world.,1,3,1
+49,The Olympic Games originated in Greece.,1,1,1
+50,Zero is an even number.,1,2,1
+51,The sum of any two prime numbers is always even.,1,2,2
+52,"The Fibonacci sequence starts with the numbers 0 and 1, and each subsequent number is the sum of the previous two.",1,2,2
+53,Multiplying any number by zero will result in zero.,1,2,1
+54,Lightning never strikes the same place twice.,1,2,2
+55,Humans and giraffes have the same number of neck vertebrae.,1,2,3
+56,Earth is closer to the sun than Venus.,1,2,1
+57,A day on Venus is longer than a year on Venus.,1,2,3
+58,Frogs drink water through their skin.,1,2,2
+59,Water is composed of two hydrogen atoms and one oxygen atom.,1,2,1
+60,Light travels faster than sound.,1,2,1
+61,Earth is closer to the sun in summer than in winter.,1,2,2
+62,All metals are magnetic.,1,2,3
+63,Humans have more bones as adults than they do as babies.,1,2,3
+64,The capital of Estonia is Tallinn.,1,3,2
+65,The capital of Lithuania is Vilnius.,1,3,2
+66,The atomic number for lithium is 17.,1,2,2
+67,There are five different blood groups.,1,2,1
+68,Your 'radius' bone is in your leg.,1,2,3
+69,The small intestine is about three-and-a-half times the length of your body.,1,2,2
+70,Thomas Edison discovered gravity.,1,2,1
+71,The United States has the longest coastline in the world.,1,3,2
+72,India is the most populated country in the world.,1,3,1
+73,A cara cara navel is a type of orange.,1,1,3
+74,Spaghetto is the singular word for a piece of spaghetti.,1,1,2
+75,Ketchup was once used to cure diseases like diarrhoea and colds.,1,1,3
+76,The five rings on the Olympic flag are interlaced.,1,1,1
+77,The human body is comprised of over 60% water.,1,2,1
+78,The Pyramids of Giza are located in Iraq.,1,3,1
+79,All planets in our solar system orbit the Sun in a circular path.,1,2,2
+80,Water expands when it freezes.,1,2,1
+81,Mercury is the hottest planet in the solar system.,1,2,2
+82,Photosynthesis occurs in animals as well as plants.,1,2,1
+83,The Earth’s atmosphere is mostly oxygen.,1,2,1
+84,The smallest bone in the human body is located in the ear.,1,2,3
+85,How many different animals are there in the Chinese Zodiac?,2,1,3
+86,In what year did Amelia Earhart disappear over the Pacific Ocean?,2,1,3
+87,What is the name of Morticia's husband in The Addams Family?,2,1,2
+88,At which fast-food restaurant chain would you find the Whopper?,2,1,1
+89,Who was the Greek Goddess of Love?,2,1,1
+90,In what year did Prince Charles marry Camilla Parker Bowles?,2,1,3
+91,How many legs does a Butterfly have?,2,1,2
+92,What was the original name for a Jack in a standard deck of poker cards?,2,1,3
+93,Which of these is vitamin B2?,2,2,2
+94,Where would you find Platform 9¾?,2,1,2
+95,What is a gastric ulcer?,2,1,2
+96,Which of Shakespeare’s comedies has a heroine named Hero?,2,1,3
+97,"Desiree is a red-skinned, yellow-fleshed, variety of which vegetable?",2,1,3
+98,Where traditionally do birds fly in winter?,2,1,1
+99,Which of the following is NOT a Bird of Prey?,2,1,1
+100,"Traditionally, mozzarella cheese is made from the milk of which Animal?",2,1,1
+101,Which breed of dog is traditionally used for hunting hares?,2,1,2
+102,The Starbucks coffee company was founded in which US City?,2,1,3
+103,"According to the title of the film, Brad Pitt’s character spent 'Seven Years In _____'?",3,1,1
+104,Which band had an hit with 'Barbie Girl'?,2,1,2
+105,Which rock group provided the soundtrack for 'Flash Gordon'?,2,1,2
+106,In what year did Elvis Presley die?,2,1,3
+107,Who was the youngest member of the Beatles?,2,1,3
+108,What was the name of the theme song for Titanic?,2,1,1
+109,Which of these cartoon characters was NOT a Walt Disney creation?,2,1,1
+110,Who composed the Opera ‘Rigoletto’?,2,1,2
+111,What colour skin does the cartoon family ‘The Simpsons’ have?,2,1,1
+112,"In London, in February 2003, Kylie Minogue launched her own range of what?",2,1,2
+113,How long is the lifespan of a human red blood cell?,2,2,3
+114,What is the longest type of cell in the body?,2,2,1
+115,Which animal possesses the largest brain relative to its body size?,2,2,2
+116,"What is the name of the small, elusive mammal native to Australia that is capable of laying eggs?",2,2,2
+117,"Of the three smallest bones in the human body, which one is also referred to as the Hammer?",2,2,3
+118,Who invented the first battery?,2,2,2
+119,"What comet, last spotted in 1986, is visible from Earth once every 75 or 76 years?",2,2,1
+120,"Which mineral is commonly known as ""fool's gold""?",2,2,1
+121,Sonar is a technique used to detect objects underwater. What is it short for?,2,2,2
+122,"What does LHC, the world’s largest machine, stand for?",2,2,1
+123,In what year was the first satellite put into orbit?,2,2,3
+124,What is the common name for the volcanic glass formed from the rapid cooling of lava without crystal growth?,2,2,1
+125,What is the element with the highest melting point?,2,2,3
+126,Which was the first noble gas to be discovered?,2,2,3
+127,"What is the approximate age of the universe, according to current scientific estimates?",2,2,3
+128,What is the term for the point in a planet's orbit around the Sun where it is closest to the star?,2,2,2
+129,Which is the only metal that is a liquid at room temperature?,2,2,2
+130,Which of these U.S. states does NOT border Canada?,2,3,2
+131,Which of these countries was NOT a part of the Soviet Union?,2,3,1
+132,Which of these cities is NOT a national capital?,2,3,2
+133,Which of these cities DOESN'T border the Mediterranean Sea?,2,3,2
+134,Which of these countries was NEVER part of the British Empire?,2,3,3
+135,Which one of these cities is NOT in the Southern Hemisphere?,2,3,2
+136,Which of these countries is NOT majority-Muslim?,2,3,2
+137,Which of these countries is NOT recognized by the United Nations?,2,3,3
+138,Which of these countries has the largest population?,2,3,1
+139,Which of these mountain ranges has the highest maximum elevation?,2,3,3
+140,Which of these rivers flows past the most countries?,2,3,1
+141,Which of these cities has the highest population?,2,3,1
+142,Which of these islands has the largest area?,2,3,1
+143,Which of these cities is at the highest latitude? (i.e. the furthest north),2,3,3
+144,Which of these countries has the highest GDP per capita?,2,3,3
+145,Which of these countries has the highest fertility rate?,2,3,3
+146,Where are the Spanish Steps located?,2,3,3
+147,How many time zones does Russia have?,2,3,3
+148,Canberra is the capital city of what country?,2,3,1
+149,Which of these is defined as ‘a piece of land that is almost entirely surrounded by water but is connected to the mainland on one side’?,2,3,1
+150,What is the longest above water mountain range in the world?,2,3,2
+151,"In ""The ____ King,"" Simba learns about responsibility and the circle of life.",3,1,1
+152,"In the TV show ""Breaking ____, "" Walter White is a high school chemistry teacher turned methamphetamine manufacturer.",3,1,1
+153,____ is a popular chocolate bar that is divided into triangular segments.,3,1,1
+154,"""Bohemian ______"" by Queen is a classic rock anthem.",3,1,1
+155,The first man to walk on the moon was _____ (first name and family name)?,3,1,1
+156,The largest planet in our solar system is _____?,3,1,1
+157,The traditional Japanese garment worn on formal occasions is called a _____.,3,1,2
+158,The festival of lights celebrated by Hindus is called _____.,3,1,2
+159,The primary religion practiced in Thailand is _____.,3,1,2
+160,The _____ is an ancient Greek temple dedicated to the goddess Athena.,3,1,2
+161,The business model where companies provide subscriptions to software is known as _____.,3,1,2
+162,The 2024 Summer Olympics kicked off in _____ (name of the city).,3,1,2
+163,The name of the main character in the video game God of War is _____.,3,1,3
+164,The first iPhone was released in the year ____.,3,1,3
+165,Pink Ladies and Granny Smiths are types of _____.,3,1,3
+166,The kenyan _____ is the official currency in Kenya.,3,1,3
+167,_____ is the name of the Chinese philosophical system that emphasizes harmony with nature.,3,1,3
+168,The Chernobyl disaster occured in _____ (year).,3,1,3
+169,_____ is the process by which some animals locate distant or not visible objects through sound waves.,3,2,1
+170,The author of the book A Brief History of Time: From the Big Bang to Black Holes is _____ (first name and last name).,3,2,1
+171,E = mc2 is an equation which deals with the Theory of special _____.,3,2,1
+172,The negatively charged particle in an atom is called _____.,3,2,1
+173,Au is the chemical symbol of _____.,3,2,1
+174,_____ is the most abundant gas in the Earth's atmosphere.,3,2,1
+175,The layer of the atmosphere in which the weather occurs is called the _____.,3,2,2
+176,_____'s law establishes the relationship between the current and the voltage as directly proportional.,3,2,2
+177,Faraday is a unit of measurment for _____.,3,2,2
+178,The study of fungi is called _____.,3,2,2
+179,"In physics, for every action there is an equal and opposite _____.",3,2,2
+180,_____ is the phase transition in which a solid turns directly into a gas without first becoming a liquid.,3,2,2
+181,"The Triassic, Jurassic, and Cretaceous periods belong to the _____ era.",3,2,3
+182,_____ is an isotope of hydrogen that is also known as heavy hydrogen.,3,2,3
+183,"Cirrus, cirrocumulus, and cirrostratus are types of _____.",3,2,3
+184,The name of the first human ancestral fossil found in the year 1974 is _____.,3,2,3
+185,The unit of measuring the depth of water is called _____.,3,2,3
+186,"In 1897, the English physicist J.J. Thomson discovered the _____.",3,2,3
+187,The _____ Desert is the largest hot desert.,3,3,1
+188,The continent of _____  has the most countries.,3,3,1
+189,The Great Barrier Reef is off the coast of _____.,3,3,1
+190,"The Eiffel Tower is located in _____, France.",3,3,1
+191,_____ is the country which has the longest coastline.,3,3,1
+192,____ is known as the land of the rising sun.,3,3,1
+193,_____ is also known as 'The eternal city'.,3,3,2
+194,____ river flows through 4 European capitals.,3,3,2
+195,The only natinal flag that does not have four sides is the flag of _____.,3,3,2
+196,The capital of Kenya is _____.,3,3,2
+197,The relief of the Earth's surface is called _____.,3,3,2
+198,"_____ is the study of all physical features of the surface of the Earth, their arrangement and origin in relation to their geological structure.",3,3,2
+199,The _____ Sea is the only sea without any coastlines.,3,3,3
+200,The statue of The Little Mermaid is located in _____ (city).,3,3,3
+201,The most populated African country is _____.,3,3,3
+202,The ____ Trench is located in the Indian Ocean.,3,3,3
+203,The capital of Uruguay is _____.,3,3,3
+204,The national flag of _____ has a shipwreck visualisation of a shipwreck.,3,3,3
+205,There are _____ (number) countries sitting on the equator.,3,3,3
+206,Name the coffee shop in US sitcom Friends.,4,1,1
+207,Which Stephen King novel takes place mostly in the fictional Overlook Hotel?,4,1,1
+208,Elon Musk is the CEO of which global automotive brand?,4,1,1
+209,Botany is the study of what life form?,4,1,1
+210,Which nuts are used in marzipan?,4,1,1
+211,Which bread ingredient causes it to rise?,4,1,1
+212,In which country would you find the original Legoland?,4,1,2
+213,Where was Frida Kahlo born?,4,1,1
+214,How many countries are there in the region of Europe? (Recognised by the United Nations)(enter a number),4,1,2
+215,"A screwdriver cocktail is orange juice, ice and which spirit?",4,1,2
+216,"What is the answer to life, the universe, and everything?",4,1,2
+217,Which legendary surrealist artist is famous for painting melting clocks?,4,1,2
+218,"In Greek mythology, who was known as the messenger of the gods?",4,1,2
+219,In what city were the first infections of COVID-19 discovered?,4,1,3
+220,For how many nights is Hanukkah celebrated? (enter a number),4,1,3
+221,What is the longest running American animated TV show?,4,1,3
+222,What was Princess Diana's maiden name?,4,1,3
+223,"According to Greek mythology, who was the first woman on earth?",4,1,3
+224,"How many keys are on a modern, standard-sized piano?",4,1,3
+225,The Goo Goo Dolls wrote “Iris” for what movie?,4,1,2
+226,What is the stage name of Stefani Joanne Angelina Germanotta?,4,1,3
+227,Which scientist first discovered gravity?,4,2,1
+228,What chemical compound is CO2 the formula for?,4,2,1
+229,"When somebody takes an ’empty’ treatment but believes to experience improved health afterwards, what is this effect referred to as?",4,2,1
+230,How many pairs of Chromosomes do humans typically have?,4,2,1
+231,What does A.I stand for?,4,2,1
+232,What is at the centre of a cell?,4,2,1
+233,"In Biology, Mitosis is a type of what?",4,2,2
+234,Where is thyroxine produced?,4,2,2
+235,"Which chemical does our brain release to help keep us motivated, and is found lacking in individuals with ADHD?",4,2,2
+236,"Which ‘belt’ consists of three supergiant stars, each several times larger than the sun?",4,2,2
+237,What is the second layer of the Earth called?,4,2,2
+238,Which drug was accidentally discovered when Dr. Alexander Fleming came back from vacation to find mould growing in a Petri dish?,4,2,2
+239,Which vitamin helps your body absorb calcium?,4,2,2
+240,What is the atomic number of gold?,4,2,3
+241,Which scientist invented dynamite?,4,2,3
+242,Which is the lightest metal in the universe?,4,2,3
+243,What’s the name of the phenomenon where light changes direction when it passes from one medium to another?,4,2,3
+244,What is the term for the measure of disorder or randomness in a system?,4,2,3
+245,What is the name of the process by which some organisms convert atmospheric nitrogen into biologically usable forms?,4,2,3
+246,What is the proper geographical term for a cluster or chain of islands?,4,3,1
+247,"What United States city is known as ""The City of Angels?""",4,3,1
+248,Which country is known as the Land of Fire and Ice due to its volcanoes and glaciers?,4,3,1
+249,In which ocean is the Bermuda Triangle located?,4,3,1
+250,Where is Chile?,4,3,1
+251,What's the capital of Canada?,4,3,1
+252,What country has the most pyramids?,4,3,2
+253,In what country is the ancient city of Petra located?,4,3,2
+254,In which US state can you find the Grand Canyon?,4,3,2
+255,"What United States city is known as ""The City of Fountains?""",4,3,2
+256,What is the largest island in the Mediterranean Sea?,4,3,2
+257,In which country would you find the Kalahari Desert?,4,3,2
+258,Gambia is surrounded by which country?,4,3,3
+259,What is the largest city in North America?,4,3,3
+260,What is the shortest river in the world?,4,3,3
+261,How many countries are there in Africa?,4,3,3
+262,The Taj Mahal is located in which city?,4,3,3
+263,Which country is known as the “Land of a Million Elephants”?,4,3,3
+264,To which country do the Galapagos Islands belong?,4,3,3
+265,The _____ was a period of great intellectual and artistic activity in Europe.,3,1,2

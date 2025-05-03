@@ -8,9 +8,10 @@ from source.Quiz_Manager.quiz_class import Quiz
 
 
 def main():
-
-    print("Welcome to QuizUp!")
-    time.sleep(0.6)
+    print("~-"*16)
+    print("~-~-   Welcome to QuizUp!   ~-~-")
+    print("~-"*16,"\n")
+    time.sleep(0.5)
 
 
     while True:
@@ -19,7 +20,7 @@ def main():
             quiz = Quiz(qm.quiz_category_menu(), qm.quiz_difficulty_menu(), qm.question_limit() )
             quiz.load_questions()
             quiz.start_quiz()
-
+            break
         elif main_menu_action == "2":
             question_manager = manager.QuestionManager()
             manage_action = qm.manage_quiz_menu()
@@ -30,11 +31,11 @@ def main():
             elif manage_action == "3":
                 question_manager.delete_question()
             else:
-                print(f"{manage_action} is not a valid choice. Please try again")
+                print(f"\n{manage_action} is not a valid choice. Please try again.\n")
         elif main_menu_action == "3":
             sys.exit("Thank you for visiting QuizUp! Goodbye!")
         else: 
-            print(f"{main_menu_action} is not a valid choice. Please try again.\n")
+            print(f"\n{main_menu_action} is not a valid choice. Please try again.\n")
 
 
 

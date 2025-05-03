@@ -1,0 +1,70 @@
+id,a,b,c,d,answer,question_id
+1,Samsung,Sony,Nokia,Apple,b,14
+2,Vienna,Zurich,Berlin,Frankfurt,c,15
+3,Jaw,Heart,Glutes,Biceps,a,16
+4,Plasma,Jelly,Ether,Earth,a,23
+5,6,12,18,24,b,85
+6,1937,1957,1947,1967,a,86
+7,Fester,Pugsley,Lurch,Gomez,d,87
+8,McDonalds,Burger King,Wimpy,Subway,b,88
+9,Diana,Athena,Aphrodite,Hera,c,89
+10,2000,2003,2005,2007,c,90
+11,2,4,6,8,c,91
+12,Joker,Thane,Wizard,Knave,d,92
+13,Oleic Acid,Cobalamin,Riboflavin,Nicotinic Acid,c,93
+14,Paddington,Victoria,King’s Cross,Liverpool Street,c,94
+15,Genetic Disease,Blocking of the stomach,Open sores in the stomach,Infection in your stomach,c,95
+16,Macbeth,Hamlet,Much Ado About Nothing,The Tempest,c,96
+17,Carrot,Onion,Potato,Swede,c,97
+18,Norht,East,South,Ibiza,c,98
+19,Owl,Buzzard,Eagle,Sparrow,d,99
+20,Sheep,Goat,Moose,Buffalo,d,100
+21,Dachshund,Beagle,Great Dane,Border Collie,b,101
+22,Seattle,Dallas,Miami,Boston,a,102
+23,Vengaboys,Rednex,2 Unlimited,Aqua,d,104
+24,Black Sabbath,Queen,Aerosmith,AC/DC,b,105
+25,1975,1976,1977,1978,c,106
+26,Paul McCartney,John Lennon,Ringo Starr,George Harrison,d,107
+27,Cold As Ice,My Heart Will Go On,Break the Ice,Total Eclipse of my Heart,b,108
+28,Mickey Mouse,Donald Duck,Goofy,Batman,d,109
+29,Bizet,Puccini,Verdi,Rossini,c,110
+30,White,Green,Yellow,Pink,c,111
+31,Lingerie,Lager,Lamps,Limousines,a,112
+32,60 days,90 days,120 days,150 days,c,113
+33,Muscle cell,Skin cell,Nerve Cell,Red blood cell,c,114
+34,Elephant,Sperm whale,Dolphin,Gorilla,b,115
+35,Platypus,Kangaroo,Tasmanian devil,Koala,a,116
+36,Incus,Malleus,Stapes,Cochlea,b,117
+37,Alessandro Volta,Michael Faraday,Nikola Tesla,Thomas Edison,a,118
+38,Halley's Comet,Comet Shoemaker-Levy 9,Hale-Bopp,Encke's Comet,a,119
+39,Quartz,Pyrite,Galena,Calcite,b,120
+40,Sound Navigation and Ranging,Silent Navigation and Radar,Sea Navigation and Radar,Sea Navigation and Ranging,a,121
+41,Linear High Collider,Large Hadron Collider,Large Hyper Collider,Linear Hadron Collider,b,122
+42,1955,1957,1959,1961‍,b,123
+43,Pumice,Obsidian,Tuff,Basalt,b,124
+44,Titanium,Tungsten,Rhenium,Tantalum,b,125
+45,Helium,Krypton,Xenon,Argon,d,126
+46,4.6 billion years,13.8 billion years,20 billion years,100 billion years,b,127
+47,Aphelion,Perihelion,Equinox,Solstice,b,128
+48,Lead,Gold,Silver,Mercury,d,129
+49,Alaska,Indiana,Maine,Minnesota,b,130
+50,Belarus,Georgia,Poland,Ukraine,c,131
+51,Bangkok,Cairo,Prague,Sidney,d,132
+52,Alexandria,Barcelona,Lisbon,Monaco,c,133
+53,Ireland,Kenya,New Zeland,Thailand,d,134
+54,Brasilia,Brisbane,Colombo,Johannesburg,c,135
+55,Albania,Ethiopia,Indonesia,Morocco,b,136
+56,Cyprus,Iran,Israel,Taiwan,d,137
+57,Russia,Brazil,Germany,Iran,b,138
+58,Andes,Urals,Alps,Rockies,a,139
+59,Danube,Amazon,Mississippi,Euphrates,a,140
+60,Singapore,San Francisco,Shanghai,Santiago,c,141
+61,Great Britain,Madagascar,Cuba,Iceland,b,142
+62,London,Paris,New York City,Beijing,a,143
+63,China,Egypt,Spain,Switzerland,d,144
+64,Mexico,Tanzania,Canada,India,b,145
+65,Italy,Spain,Mexico,Peru,a,146
+66,7,9,11,13,c,147
+67,Spain,Australia,New Zeland,Poland,b,148
+68,Peninsula,Archipelago,Cape,Non of the above,a,149
+69,Andes,Alps,Himalayas,Caucasus Mountains,a,150

@@ -2,8 +2,6 @@ from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, relationship
 import os
 
-# cwd = os.path()
-# print(cwd)
 
 db_folder = os.path.dirname(__file__)  
 db_path = os.path.join(db_folder, 'quiz.db')  
@@ -25,12 +23,16 @@ class QuestionDB(Base):
     fill_in = relationship("FillInQuestionDB", back_populates = "question", uselist = False)
     short_answer = relationship("ShortAnswerQuestionDB", back_populates = "question", uselist = False)
 
+    def __str__(self):
+        return f"ID: {self.id}, Text: {self.question_text}, Type: {self.question_type}, Category: {self.category}"
+
 class TrueFalseQuestionDB(Base):
     __tablename__ = "true_false" 
     id = Column(Integer, primary_key = True)
     answer = Column(String, nullable = False)
     question_id = Column(Integer, ForeignKey("questions.id"), nullable = False)
     question = relationship("QuestionDB", back_populates = "true_false")
+
 
 class MultipleChoiceQuestionDB(Base):
     __tablename__ = "multiple_choice"
@@ -50,6 +52,7 @@ class FillInQuestionDB(Base):
     answer = Column(String, nullable = False)
     question_id = Column(Integer, ForeignKey("questions.id"), nullable = False)
     question = relationship("QuestionDB", back_populates = "fill_in")
+
 
 class ShortAnswerQuestionDB(Base):
     __tablename__ = "short_answer_questions"

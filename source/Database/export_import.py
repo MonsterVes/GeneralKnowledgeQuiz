@@ -26,7 +26,7 @@ def export_table_to_csv(table, filename):
 
 session.close()
 
-# export_table_to_csv(qdb.QuestionDB,"questions.csv")
+# export_table_to_csv(qdb.ShortAnswerQuestionDB,"short_answer.csv")
 
 
 

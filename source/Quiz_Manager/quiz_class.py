@@ -2,6 +2,7 @@ import random
 from source.Database import quiz_db as qdb
 from sqlalchemy.orm import sessionmaker
 
+
 Session = sessionmaker(bind = qdb.engine)
 
 
@@ -17,14 +18,25 @@ class Quiz:
     def load_questions(self):
         questions_per_type = self.question_limit // 4
         all_questions = []
-        for question_type in ["1", "2", "3", "4"]:
-            questions = (
-            self.session.query(qdb.QuestionDB).filter_by(
-                category = self.category, 
-                difficulty = self.difficulty, 
-                question_type=question_type).limit(questions_per_type).all()
-        )
-            all_questions.extend(questions)
+
+        if self.category == "4":
+            for question_type in ["1", "2", "3", "4"]:
+                questions = (
+                    self.session.query(qdb.QuestionDB).filter_by( 
+                    difficulty = self.difficulty,
+                    question_type = question_type).limit(questions_per_type).all()
+                    )
+                all_questions.extend(questions)
+        else:
+            for question_type in ["1", "2", "3", "4"]:
+                questions = (
+                    self.session.query(qdb.QuestionDB).filter_by(
+                    category = self.category, 
+                    difficulty = self.difficulty, 
+                    question_type=question_type).limit(questions_per_type).all()
+                    )
+                all_questions.extend(questions)
+
         if len(all_questions) < self.question_limit:
             print(f"Not enough questions in the database. Only {len(all_questions)} questions found.")
             return False
@@ -35,6 +47,7 @@ class Quiz:
         
 
     def print_questions(self, question):
+        print("~-"*6)
         print(f"{question.question_text}")
         if question.question_type == "1":
             while True:
@@ -66,23 +79,33 @@ class Quiz:
             return user_answer == correct_answer
         
     def start_quiz(self):
-        for index, question in enumerate(self.questions, start = 1):
-            print(f"\nQuestion No. {index}")
-            correct_answer = self.print_questions(question)
-            if correct_answer:
-                print("Correct!")
-                self.score +=1
-            else:
-                if question.question_type == "1":
-                    correct_answer = question.true_false.answer
-                elif question.question_type == "2":
-                    correct_answer = question.multiple_choice.answer.upper()
-                elif question.question_type == "3":
-                    correct_answer = question.fill_in.answer
-                elif question.question_type == "4":
-                    correct_answer = question.short_answer.answer
-                print(f"Wrong! The correct answer is: {correct_answer.title()}")
+        try:
+            for index, question in enumerate(self.questions, start = 1):
+                print(f"\nQuestion No. {index}")
+                correct_answer = self.print_questions(question)
+                if correct_answer:
+                    print("Correct!")
+                    self.score +=1
+                    print("~-"*6)
+                else:
+                    if question.question_type == "1":
+                        correct_answer = question.true_false.answer
+                    elif question.question_type == "2":
+                        correct_answer = question.multiple_choice.answer.upper()
+                    elif question.question_type == "3":
+                        correct_answer = question.fill_in.answer
+                    elif question.question_type == "4":
+                        correct_answer = question.short_answer.answer
+                    print(f"Wrong! The correct answer is: {correct_answer.title()}")
+                    print("~-"*6)
 
-        print(f"Your score is {self.score} out of {self.question_limit}.")
-        self.session.close()
+            print(  "\nYou have answered all questions!\n"
+                    f"Your score is {self.score} out of {self.question_limit}."
+                    )
+            self.session.close()
+
+        except Exception as e:
+            print("Error starting quiz! {e}")
+            self.session.close()
+        
         

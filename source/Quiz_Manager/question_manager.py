@@ -11,122 +11,173 @@ class QuestionManager:
 
     def add_question(self):
         try:
-            category = input(
-                "Please enter category for the question\n"
-                " 1. General\n"
-                " 2. Science\n" 
-                " 3. Geography\n" 
-                "Your choice (1, 2 or 3): ").strip()
-            if category not in ["1", "2", "3"]:
-                print("Invalid category choice. Please try again.")
-                return
-            
-            question_type = input(
-                "What type of question would you like to add?\n"
-                " 1. True/False\n"
-                " 2. Multiple Choice\n" 
-                " 3. Fill in the blank\n" 
-                " 4. Short Answer\n"
-                "Your choice(1, 2, 3 or 4): ").strip()
-            if question_type not in ["1", "2", "3", "4"]:
-                print("Invalid question type choice. Please try again.")
-                return
-            
-            difficulty = input(
-                "What is the difficulty of the question?\n"
-                " 1. Easy\n"
-                " 2. Medium\n" 
-                " 3. Hard\n" 
-                "Your choice(1, 2 or 3): ").strip()
-            if difficulty not in ["1", "2", "3"]:
-                print("Invalid question difficulty. Please try again.")
-                return           
-            if question_type == "3":
-                print("Question must contain 3 to 5 consecutive underscores (____) for the 'Fill in the blank' field\n")
-            new_question_text = input("Please enter Question text: ").strip()
-            if not new_question_text:
-                print("Question text cannot be empty")
-                return
-            new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category = category, difficulty = difficulty)
-            
-            self.session.add(new_question)
-            self.session.commit()
+            while True:
+                category = input(
+                    "\nPlease enter category for the question\n"
+                    " 1. General\n"
+                    " 2. Science\n" 
+                    " 3. Geography\n\n" 
+                    "Your choice (1, 2 or 3): ").strip()
+                if category not in ["1", "2", "3"]:
+                    print("\nInvalid category choice. Please try again.")
+                    continue
+                
+                question_type = input(
+                    "\nWhat type of question would you like to add?\n"
+                    " 1. True/False\n"
+                    " 2. Multiple Choice\n" 
+                    " 3. Fill in the blank\n" 
+                    " 4. Short Answer\n\n"
+                    "Your choice(1, 2, 3 or 4): ").strip()
+                if question_type not in ["1", "2", "3", "4"]:
+                    print("\nInvalid question type choice. Please try again.")
+                    continue
+                
+                difficulty = input(
+                    "\nWhat is the difficulty of the question?\n"
+                    " 1. Easy\n"
+                    " 2. Medium\n" 
+                    " 3. Hard\n\n" 
+                    "Your choice(1, 2 or 3): ").strip()
+                if difficulty not in ["1", "2", "3"]:
+                    print("\nInvalid question difficulty. Please try again.")
+                    continue    
+
+                if question_type == "3":
+                    print("Question must contain 3 to 5 consecutive underscores (____) for the 'Fill in the blank' field\n")
+
+                new_question_text = input("\nPlease enter Question text: ").strip()
+                if not new_question_text:
+                    print("\nQuestion text cannot be empty.")
+                    continue
+                new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category = category, difficulty = difficulty)
+                
+                self.session.add(new_question)
+                self.session.commit()
 
 
-            if question_type == "1":
-                answer = input("Please enter correct answer (True/False): ").strip().lower()
-                if answer not in ["true", "false"]:
-                    print("Answer must be True or False")
-                    self.session.delete(new_question)
-                    self.session.commit()
-                    return
-                question = db.TrueFalseQuestionDB(answer=answer, question=new_question)
+                if question_type == "1":
+                    while True:
+                        answer = input("Please enter correct answer (True/False): ").strip().lower()
+                        if answer in ["true", "false"]:
+                            break
+                        else:
+                            print(f"{answer} is not a valid answer. Answer must be True or False. Please provide a valid answer.")
+                    question = db.TrueFalseQuestionDB(answer=answer, question=new_question)
 
-            elif question_type == "2":
-                options = []
-                for letter in ["A", "B", "C", "D"]:
-                    option = input(f"Option {letter}: ").strip().lower()
-                    if not option:
-                        print("Option cannot be empty")
+                elif question_type == "2":
+                    options = []
+                    for letter in ["A", "B", "C", "D"]:
+                        while True:
+                            option = input(f"Option {letter}: ").strip().lower()
+                            if option:
+                                options.append(option)
+                                break
+                            else:
+                                print(f"Option {letter} cannot be empty. Please provide a valid input.")
+                    while True:
+                        answer = input("Please enter correct Option (A, B, C or D): ").strip().lower()
+                        if answer in ["a", "b", "c", "d"]:
+                            break
+                        else:
+                            print(f"Option {letter} cannot be empty. Please provide a valid answer.")
+                    question = db.MultipleChoiceQuestionDB(                    
+                        a = options[0],
+                        b = options[1],
+                        c = options[2],
+                        d = options[3],
+                        answer = answer,
+                        question = new_question
+                    )
+                elif question_type == "3":
+                    if not re.search(r"_{3,5}", new_question_text):
+                        print("\nInvalid fill-in-the-blank question. It must contain 3 to 5 consecutive underscores for BLANK visualisation.")
                         self.session.delete(new_question)
                         self.session.commit()
-                        return
-                    options.append(option)
+                        continue
+                    while True:
+                        answer = input("Please enter correct answer: ").strip().lower()
+                        if answer:
+                            break
+                        else:
+                            print("Answer cannot be empty. Please provide a valid answer.")
+                    question = db.FillInQuestionDB(answer = answer, question = new_question)
 
-                answer = input("Please enter correct Option (A, B, C or D): ").strip().lower()
-                if answer not in ["a", "b", "c", "d"]:
-                    print("Answer must be A, B, C or D")
-                    self.session.delete(new_question)
-                    self.session.commit()                    
-                    return
-                question = db.MultipleChoiceQuestionDB(                    
-                    a = options[0],
-                    b = options[1],
-                    c = options[2],
-                    d = options[3],
-                    answer = answer,
-                    question = new_question
-                )
-            elif question_type == "3":
-                if not re.search(r"_{3,5}", new_question_text):
-                    print("Invalid fill-in-the-blank question. It must contain 3 to 5 consecutive underscores.")
-                    self.session.delete(new_question)
-                    self.session.commit()
-                answer = input("Please enter correct answer: ").strip().lower()
-                if not answer:
-                    print("Answer cannot be empty")
-                    self.session.delete(new_question)
-                    self.session.commit()
-                    return
-                question = db.FillInQuestionDB(answer = answer, question = new_question)
-            
-            elif question_type == "4":
-                answer = input("Please enter correct answer: ").strip().lower()
-                if not answer:
-                    print("Answer cannot be empty")
-                    self.session.delete(new_question)
-                    self.session.commit()                    
-                    return
-                question = db.ShortAnswerQuestionDB(
-                    answer = answer, question = new_question)
-            else:
-                raise ValueError("Unsupported question type")
+                elif question_type == "4":
+                    while True:
+                        answer = input("Please enter correct answer: ").strip().lower()
+                        if answer:
+                            break
+                        else:
+                            print("Answer cannot be empty. Please provide a valid answer.")
+                    question = db.ShortAnswerQuestionDB(
+                        answer = answer, question = new_question)
+                else:
+                    print("Unsupported question type.")
+                    continue
 
-            self.session.add(new_question)
-            self.session.add(question)
-            self.session.commit()
-            print("Question added successfully!")
+                self.session.add(question)
+                self.session.commit()
+                print("\nQuestion has been added successfully!\n")
+                break
         except Exception as e:
             self.session.rollback()
             print(f"Error adding question.{e}")
-            self.session.close()
         finally:
             self.session.close()
 
     
     def delete_question(self):
-        pass
+        try:
+            category = input(
+                "\nPlease enter the category of the question you would like to delete:\n"
+                " 1. General\n"
+                " 2. Science\n" 
+                " 3. Geography\n\n" 
+                "Your choice (1, 2 or 3): ").strip()
+            question_type = input(
+                "\nPlease enter the type of the question you would like to delete:\n"
+                " 1. True/False\n"
+                " 2. Multiple Choice\n" 
+                " 3. Fill in the blank\n" 
+                " 4. Short Answer\n\n"
+                "Your choice (1, 2, 3 or 4): ").strip()
+            
+            question_list = self.session.query(db.QuestionDB).filter_by(category = category, question_type = question_type).all()
+            for question in question_list:
+                print(question)
 
+            question_id = int(input("\nPlease enter the ID of the question you would like to delete:\n"
+                                "\nID: ").strip())
+            question_to_del = self.session.query(db.QuestionDB).filter_by(id = question_id).first()
+            if question_to_del.question_type == "1":
+                related_row = self.session.query(db.TrueFalseQuestionDB).filter_by(question_id = question_id).first()
+            elif question_to_del.question_type == "2":
+                related_row = self.session.query(db.MultipleChoiceQuestionDB).filter_by(question_id = question_id).first()
+            elif question_to_del.question_type == "3":
+                related_row = self.session.query(db.FillInQuestionDB).filter_by(question_id = question_id).first()
+            elif question_to_del.question_type == "4":
+                related_row = self.session.query(db.ShortAnswerQuestionDB).filter_by(question_id = question_id).first()
+            else:
+                print(f"\nUnknown question type for question ID {question_id}.\n")
+                return
+            
+            confirmation = input (f"\nAre you sure you want to delete question {question_id}? (Y/N):").strip().lower()
+            if confirmation == "y":
+                if related_row:
+                    self.session.delete(related_row)
+                self.session.delete(question_to_del)
+                self.session.commit()
+                print("\nQuestion has been deleted successfully!\n")
+            else:
+                print("\nDeletion canceled.\n")
+            
+        except Exception as e:
+            print(f"\nError deleting question. {e}. Please try again.\n")
+            self.session.rollback()
+
+        finally:
+            self.session.close()
 
     def edit_question(self):
         pass
