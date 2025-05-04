@@ -105,7 +105,7 @@ class Quiz:
             self.session.close()
 
         except Exception as e:
-            print("Error starting quiz! {e}")
+            print(f"Error starting quiz! {e}")
             self.session.close()
         
         
