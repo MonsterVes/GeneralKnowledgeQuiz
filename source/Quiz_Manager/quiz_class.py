@@ -1,6 +1,7 @@
 import random
 from source.Database import quiz_db as qdb
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql.expression import func
 
 
 Session = sessionmaker(bind = qdb.engine)
@@ -16,35 +17,45 @@ class Quiz:
         self.score = 0
 
     def load_questions(self):
-        questions_per_type = self.question_limit // 4
-        all_questions = []
+        try:
+            questions_per_type = self.question_limit // 4
+            all_questions = []
 
-        if self.category == "4":
-            for question_type in ["1", "2", "3", "4"]:
-                questions = (
-                    self.session.query(qdb.QuestionDB).filter_by( 
-                    difficulty = self.difficulty,
-                    question_type = question_type).limit(questions_per_type).all()
-                    )
-                all_questions.extend(questions)
-        else:
-            for question_type in ["1", "2", "3", "4"]:
-                questions = (
-                    self.session.query(qdb.QuestionDB).filter_by(
-                    category = self.category, 
-                    difficulty = self.difficulty, 
-                    question_type=question_type).limit(questions_per_type).all()
-                    )
-                all_questions.extend(questions)
+            if self.category == 0:
+                for question_type in ["1", "2", "3", "4"]:
+                    questions = (
+                        self.session.query(qdb.QuestionDB)
+                        .filter_by(difficulty = self.difficulty,question_type = question_type)
+                        .order_by(func.random())
+                        .limit(questions_per_type)
+                        .all()
+                        )
+                    all_questions.extend(questions)
+            else:
+                for question_type in ["1", "2", "3", "4"]:
+                    questions = (
+                        self.session.query(qdb.QuestionDB)
+                        .filter_by(
+                            category_id = self.category, 
+                            difficulty = self.difficulty, 
+                            question_type=question_type)
+                        .order_by(func.random())
+                        .limit(questions_per_type)
+                        .all()
+                        )
+                    all_questions.extend(questions)
 
-        if len(all_questions) < self.question_limit:
-            print(f"Not enough questions in the database. Only {len(all_questions)} questions found.")
-            return False
-    
-        selected_questions = random.sample(all_questions, self.question_limit)
-        self.questions = sorted(selected_questions, key = lambda q: q.question_type)
-        return True
+            if len(all_questions) < self.question_limit:
+                print(f"Not enough questions in the database. Only {len(all_questions)} questions found.")
+                return False
         
+            selected_questions = random.sample(all_questions, self.question_limit)
+            self.questions = sorted(selected_questions, key = lambda q: q.question_type)
+            return True
+        except Exception as e:
+            print(f"Error loading questions:\n{e}")
+            return False     
+               
 
     def print_questions(self, question):
         print("~-"*6)
@@ -84,8 +95,8 @@ class Quiz:
                 print(f"\nQuestion No. {index}")
                 correct_answer = self.print_questions(question)
                 if correct_answer:
-                    print("Correct!")
                     self.score +=1
+                    print(f"Correct! Your score: {self.score}.")
                     print("~-"*6)
                 else:
                     if question.question_type == "1":
@@ -100,7 +111,7 @@ class Quiz:
                     print("~-"*6)
 
             print(  "\nYou have answered all questions!\n"
-                    f"Your score is {self.score} out of {self.question_limit}."
+                    f"Your final score is {self.score} out of {self.question_limit}."
                     )
             self.session.close()
 

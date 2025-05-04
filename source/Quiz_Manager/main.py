@@ -30,6 +30,10 @@ def main():
                 question_manager.edit_question()
             elif manage_action == "3":
                 question_manager.delete_question()
+            elif manage_action == "4":
+                question_manager.add_category()
+            elif manage_action == "5":
+                question_manager.delete_category()
             else:
                 print(f"\n{manage_action} is not a valid choice. Please try again.\n")
         elif main_menu_action == "3":

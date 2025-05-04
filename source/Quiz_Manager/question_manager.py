@@ -12,15 +12,25 @@ class QuestionManager:
     def add_question(self):
         try:
             while True:
-                category = input(
-                    "\nPlease enter category for the question\n"
-                    " 1. General\n"
-                    " 2. Science\n" 
-                    " 3. Geography\n\n" 
-                    "Your choice (1, 2 or 3): ").strip()
-                if category not in ["1", "2", "3"]:
-                    print("\nInvalid category choice. Please try again.")
-                    continue
+                categories = self.session.query(db.CategoryDB).all()
+                print("\nPlease enter category for the question:\n")
+                for cat in categories:
+                    print(f"{cat.id}. {cat.name.capitalize()}")
+                while True:
+                    category_id = int(input("\nYour choice: ").strip())
+                    if any(cat.id == category_id for cat in categories):
+                        break
+                    else:
+                        print("Invalid category. Please try again.")
+                # category = input(
+                #     "\nPlease enter category for the question\n"
+                #     " 1. General\n"
+                #     " 2. Science\n" 
+                #     " 3. Geography\n\n" 
+                #     "Your choice (1, 2 or 3): ").strip()
+                # if category not in ["1", "2", "3"]:
+                #     print("\nInvalid category choice. Please try again.")
+                #     continue
                 
                 question_type = input(
                     "\nWhat type of question would you like to add?\n"
@@ -50,7 +60,7 @@ class QuestionManager:
                 if not new_question_text:
                     print("\nQuestion text cannot be empty.")
                     continue
-                new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category = category, difficulty = difficulty)
+                new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category_id = category_id, difficulty = difficulty)
                 
                 self.session.add(new_question)
                 self.session.commit()
@@ -129,12 +139,17 @@ class QuestionManager:
     
     def delete_question(self):
         try:
-            category = input(
-                "\nPlease enter the category of the question you would like to delete:\n"
-                " 1. General\n"
-                " 2. Science\n" 
-                " 3. Geography\n\n" 
-                "Your choice (1, 2 or 3): ").strip()
+            categories = self.session.query(db.CategoryDB).all()
+            print("\nPlease enter category for the question\n")
+            for cat in categories:
+                print(f"{cat.id}. {cat.name.capitalize()}")
+            category_id = int(input("\nYour choice: ").strip())
+            # category = input(
+            #     "\nPlease enter the category of the question you would like to delete:\n"
+            #     " 1. General\n"
+            #     " 2. Science\n" 
+            #     " 3. Geography\n\n" 
+            #     "Your choice (1, 2 or 3): ").strip()
             question_type = input(
                 "\nPlease enter the type of the question you would like to delete:\n"
                 " 1. True/False\n"
@@ -143,7 +158,7 @@ class QuestionManager:
                 " 4. Short Answer\n\n"
                 "Your choice (1, 2, 3 or 4): ").strip()
             
-            question_list = self.session.query(db.QuestionDB).filter_by(category = category, question_type = question_type).all()
+            question_list = self.session.query(db.QuestionDB).filter_by(category_id = category_id, question_type = question_type).all()
             for question in question_list:
                 print(question)
 
@@ -183,4 +198,60 @@ class QuestionManager:
         pass
 
 
+    def add_category(self):
+        try:
+            while True:
+                print("!!!You need to add at least 2 questions per question type in order to use this category in a quiz!!!")
+                new_category = input("\nEnter the name of the new category: ").strip().lower()
+                if not new_category:
+                    print("Category name cannot be empty. Please input a category name:")
+                    continue
+                existing_category = self.session.query(db.CategoryDB).filter_by(name = new_category).first()
+                if existing_category:
+                    print(f"{new_category} already exists")
+                    continue
+                add_new_category = db.CategoryDB(name = new_category)
+                self.session.add(add_new_category)
+                self.session.commit()
+                print(f"{new_category.capitalize()} has been added to Quiz categories.")
+                print("Remember!\n"
+                    "!!!You need to add at least 2 questions per question type in order to use this category in a quiz!!!\n")
+                break
+        except Exception as e:
+            print(f"Error while adding {new_category.capitalize()} category:\n{e}")
+            self.session.rollback()
+        finally:
+            self.session.close()
+
+
+    def delete_category(self):
+        try:
+            print("!!!You can only delete a category if there are no questions associated with it!!!")
+            categories = self.session.query(db.CategoryDB).all()
+            for cat in categories:
+                print(f"{cat.id}. {cat.name.capitalize()}")
+
+            while True:
+                category_id = int(input("\nEnter the ID of the category you would like to delete: ").strip())
+                category_to_del = self.session.query(db.CategoryDB).filter_by(id = category_id).first()
+                if category_to_del:
+                    break
+                else:
+                    print("Invalid category ID. Please try again.")
+
+            associated_questions = self.session.query(db.QuestionDB).filter_by(category_id = category_id).count()
+            if associated_questions > 0:
+                print(f"\n'{category_to_del.name.capitalize()}' cannot be deleted because it has {associated_questions} associated questions.\n"
+                      "Please delete all question associated with this category first.\n")
+                return
+            
+            self.session.delete(category_to_del)
+            self.session.commit()
+            print(f"\n'{category_to_del.name.capitalize()}' has been deleted successfully!")
+        
+        except Exception as e:
+            self.session.rollback()
+            print(f"\nError deleting category:\n {e}\n")
+        finally:
+            self.session.close()
 
