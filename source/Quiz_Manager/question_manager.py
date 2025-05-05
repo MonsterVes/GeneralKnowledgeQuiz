@@ -10,6 +10,11 @@ class QuestionManager:
         self.session = Session()
 
     def add_question(self):
+        """
+        Adds a new question to the quiz database through interactive user input.
+        The question and its answer are saved to appropriate database tables based on question type.
+        Raises exception if there is an error during question addition, rolls back the transaction
+        """
         try:
             while True:
                 categories = self.session.query(db.CategoryDB).all()
@@ -22,15 +27,6 @@ class QuestionManager:
                         break
                     else:
                         print("Invalid category. Please try again.")
-                # category = input(
-                #     "\nPlease enter category for the question\n"
-                #     " 1. General\n"
-                #     " 2. Science\n" 
-                #     " 3. Geography\n\n" 
-                #     "Your choice (1, 2 or 3): ").strip()
-                # if category not in ["1", "2", "3"]:
-                #     print("\nInvalid category choice. Please try again.")
-                #     continue
                 
                 question_type = input(
                     "\nWhat type of question would you like to add?\n"
@@ -62,9 +58,8 @@ class QuestionManager:
                     continue
                 new_question = db.QuestionDB(question_text = new_question_text, question_type = question_type, category_id = category_id, difficulty = difficulty)
                 
-                self.session.add(new_question)
+                self.session.add(new_question) # Adds the question in order to link its ID with the corresponding table.
                 self.session.commit()
-
 
                 if question_type == "1":
                     while True:
@@ -74,7 +69,6 @@ class QuestionManager:
                         else:
                             print(f"{answer} is not a valid answer. Answer must be True or False. Please provide a valid answer.")
                     question = db.TrueFalseQuestionDB(answer=answer, question=new_question)
-
                 elif question_type == "2":
                     options = []
                     for letter in ["A", "B", "C", "D"]:
@@ -112,7 +106,6 @@ class QuestionManager:
                         else:
                             print("Answer cannot be empty. Please provide a valid answer.")
                     question = db.FillInQuestionDB(answer = answer, question = new_question)
-
                 elif question_type == "4":
                     while True:
                         answer = input("Please enter correct answer: ").strip().lower()
@@ -138,18 +131,18 @@ class QuestionManager:
 
     
     def delete_question(self):
+        """
+        Deletes a question from the database based on user input. Handles the deletion of both the main question entry and its related
+        type-specific details (True/False, Multiple Choice, etc.)
+        """
         try:
             categories = self.session.query(db.CategoryDB).all()
-            print("\nPlease enter category for the question\n")
+            print("\nPlease enter category for the question you would like to delete:\n")
+            
             for cat in categories:
                 print(f"{cat.id}. {cat.name.capitalize()}")
             category_id = int(input("\nYour choice: ").strip())
-            # category = input(
-            #     "\nPlease enter the category of the question you would like to delete:\n"
-            #     " 1. General\n"
-            #     " 2. Science\n" 
-            #     " 3. Geography\n\n" 
-            #     "Your choice (1, 2 or 3): ").strip()
+            
             question_type = input(
                 "\nPlease enter the type of the question you would like to delete:\n"
                 " 1. True/False\n"
@@ -164,6 +157,7 @@ class QuestionManager:
 
             question_id = int(input("\nPlease enter the ID of the question you would like to delete:\n"
                                 "\nID: ").strip())
+            
             question_to_del = self.session.query(db.QuestionDB).filter_by(id = question_id).first()
             if question_to_del.question_type == "1":
                 related_row = self.session.query(db.TrueFalseQuestionDB).filter_by(question_id = question_id).first()
@@ -194,11 +188,15 @@ class QuestionManager:
         finally:
             self.session.close()
 
+
     def edit_question(self):
         pass
 
 
     def add_category(self):
+        """
+        Adds a new category to the quiz database after validating user input.
+        """
         try:
             while True:
                 print("!!!You need to add at least 2 questions per question type in order to use this category in a quiz!!!")
@@ -225,6 +223,10 @@ class QuestionManager:
 
 
     def delete_category(self):
+        """
+        Deletes a category from the database if it has no associated questions.
+        Checks if selected category has any questions. If yes, deletion is prevented..
+        """
         try:
             print("!!!You can only delete a category if there are no questions associated with it!!!")
             categories = self.session.query(db.CategoryDB).all()

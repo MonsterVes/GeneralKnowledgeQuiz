@@ -28,6 +28,7 @@ class QuestionDB(Base):
     def __str__(self):
         return f"ID: {self.id}, Text: {self.question_text}, Type: {self.question_type}, Category: {self.category}"
 
+
 class TrueFalseQuestionDB(Base):
     __tablename__ = "true_false" 
     id = Column(Integer, primary_key = True)
