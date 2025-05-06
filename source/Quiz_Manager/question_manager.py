@@ -190,7 +190,114 @@ class QuestionManager:
 
 
     def edit_question(self):
-        pass
+        try:
+            categories = self.session.query(db.CategoryDB).all()
+            print("\nPlease enter category for the question you would like to edit:\n")
+            
+            for cat in categories:
+                print(f"{cat.id}. {cat.name.capitalize()}")
+            category_id = int(input("\nYour choice: ").strip())
+            
+            question_type = input(
+                "\nPlease enter the type of the question you would like to edit:\n"
+                " 1. True/False\n"
+                " 2. Multiple Choice\n" 
+                " 3. Fill in the blank\n" 
+                " 4. Short Answer\n\n"
+                "Your choice (1, 2, 3 or 4): ").strip()
+            
+            question_list = self.session.query(db.QuestionDB).filter_by(category_id = category_id, question_type = question_type).all()
+            for question in question_list:
+                print(question)
+
+            question_id = int(input("\nPlease enter the ID of the question you would like to delete:\n"
+                                "\nID: ").strip())
+            question_to_edit = self.session.query(db.QuestionDB).filter_by(id = question_id).first()
+            if not question_to_edit:
+                print(f"\nQuestion with ID {question_id} not found.")
+                return
+            print(f"\nSelected Question:\n{question_to_edit.question_text}"
+                  f"\nDifficulty: {question_to_edit.difficulty}"
+                  f"\nCategory: {question_to_edit.category_id}")
+
+            if question_to_edit.question_type == "1":
+                related_row = self.session.query(db.TrueFalseQuestionDB).filter_by(question_id = question_id).first()
+                print(f"Answer: {related_row.answer.capitalize()}")
+            elif question_to_edit.question_type == "2":
+                related_row = self.session.query(db.MultipleChoiceQuestionDB).filter_by(question_id = question_id).first()
+                print(f"Options:\n A. {related_row.a}\n B. {related_row.b}\n C. {related_row.c}\n D. {related_row.d}")
+                print(f"Correct Answer: {related_row.answer.upper()}")
+            elif question_to_edit.question_type == "3":
+                related_row = self.session.query(db.FillInQuestionDB).filter_by(question_id = question_id).first()
+                print(f"Answer: {related_row.answer}")
+            elif question_to_edit.question_type == "4":
+                related_row = self.session.query(db.ShortAnswerQuestionDB).filter_by(question_id = question_id).first()
+                print(f"Answer: {related_row.answer}")
+            else:
+                print(f"\nUnknown question type for question ID {question_id}.\n")
+                return
+            
+            # Edit question text
+            new_question_text = input(
+                f"\nCurrent question text: {question_to_edit.question_text}"
+                "\nEnter new question text (or press Enter to keep it unchanged): ").strip()
+            if new_question_text:
+                question_to_edit.question_text = new_question_text
+            # Edit difficulty   
+            new_difficulty = input("Enter new difficulty (1: Easy, 2: Medium, 3: Hard, or press Enter to keep it unchanged): ").strip()
+            if new_difficulty in ["1", "2", "3"]:
+                question_to_edit.difficulty = new_difficulty
+            # Edit category    
+            print("\nAvailable Categories:")
+            for cat in categories:
+                print(f"{cat.id}. {cat.name.capitalize()}")
+            new_category_id = int(input("\nEnter new category ID (or press Enter to keep it unchanged): ").strip())
+            if any(cat.id == new_category_id for cat in categories):
+                question_to_edit.category_id = new_category_id
+            # Edit question answers
+            if question_type == "1":
+                new_answer = input(
+                    f"\nCurrent answer: {related_row.answer.capitalize()}\n"
+                    "Enter new answer (True/False, or press Enter to keep it unchanged): ").strip().lower()
+                if new_answer in ["true", "false"]:
+                    related_row.answer = new_answer
+
+            elif question_type == "2":
+                for option in ["a", "b", "c", "d"]:
+                    current_option = getattr(related_row, option)
+                    new_option = input(
+                        f"\nCurrent option {option.upper()}: {current_option}"
+                        f"\nEnter new option {option.upper()} (or press Enter to keep it unchanged): ").strip()
+                    if new_option:
+                        setattr(related_row, option, new_option)
+                new_answer = input(
+                    f"\nCurrent correct answer: {related_row.answer.upper()}"
+                    f"\nEnter new correct answer (A, B, C, or D, or press Enter to keep it unchanged): ").strip().lower()
+                if new_answer in ["a", "b", "c", "d"]:
+                    related_row.answer = new_answer
+
+            elif question_type == "3":
+                new_answer = input(
+                    f"\nCurrent answer: {related_row.answer}"
+                    f"\nEnter new answer (or press Enter to keep it unchanged): ").strip()
+                if new_answer:
+                    related_row.answer = new_answer
+
+            elif question_type == "4":
+                new_answer = input(
+                    f"\nCurrent answer: {related_row.answer}"
+                    f"\nEnter new answer (or press Enter to keep it unchanged): ").strip()
+                if new_answer:
+                    related_row.answer = new_answer
+
+            self.session.commit()
+            print("\nQuestion has been updated successfully!")
+
+        except Exception as e:
+            self.session.rollback()
+            print(f"Error editting question:\n{e}")
+        finally:
+            self.session.close() 
 
 
     def add_category(self):
