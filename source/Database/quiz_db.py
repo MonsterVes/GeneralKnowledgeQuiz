@@ -16,15 +16,18 @@ class QuestionDB(Base):
     id = Column(Integer, primary_key=True)
     question_text = Column(String, nullable = False)
     question_type = Column(String, nullable = False)
-    category = Column(String, nullable = False)
+    category_id = Column(Integer, ForeignKey("category.id"), nullable = False)
     difficulty = Column(String, nullable = False)
+    category = relationship("CategoryDB", back_populates = "questions")
     true_false = relationship("TrueFalseQuestionDB", back_populates = "question", uselist = False)
     multiple_choice = relationship("MultipleChoiceQuestionDB", back_populates = "question", uselist = False)
     fill_in = relationship("FillInQuestionDB", back_populates = "question", uselist = False)
     short_answer = relationship("ShortAnswerQuestionDB", back_populates = "question", uselist = False)
 
+    
     def __str__(self):
         return f"ID: {self.id}, Text: {self.question_text}, Type: {self.question_type}, Category: {self.category}"
+
 
 class TrueFalseQuestionDB(Base):
     __tablename__ = "true_false" 
@@ -60,6 +63,16 @@ class ShortAnswerQuestionDB(Base):
     answer = Column(String, nullable = False)
     question_id = Column(Integer, ForeignKey("questions.id"), nullable = False)
     question = relationship("QuestionDB", back_populates = "short_answer")
+
+
+class CategoryDB(Base):
+    __tablename__ = "category"
+    id = Column(Integer, primary_key = True)
+    name = Column(String, unique = True, nullable = False)
+    questions = relationship("QuestionDB", back_populates = "category")
+
+    def __str__(self):
+        return f"{self.id}"
 
 
 Base.metadata.create_all(engine)
